@@ -26,14 +26,22 @@ Note: switching DNS takes the current WordPress shop offline.
 ## Before going live
 
 - **Contact email:** `CONTACT_EMAIL` in `js/main.js` is set to `info@vitruvianlime.com`. Send it a test email to confirm the inbox exists and is monitored.
-- **Optional form service:** GitHub Pages can't send email itself. By default the form opens the visitor's email app (mailto). To have messages delivered directly, create a Formspree (or similar) form and set `FORM_ENDPOINT`.
+- **Contact form:** submissions go to Web3Forms (access key in `contact.html`), which emails the inbox the key was registered to. Manage the key and recipient at web3forms.com. If a submission fails, the form falls back to opening the visitor's email app addressed to `CONTACT_EMAIL`.
 
 ## Structure
 
+Each page is a folder with an `index.html`, so URLs are clean: `/`, `/about/` and `/contact/`.
+
 ```
-index.html  about.html  contact.html  404.html
+index.html              home  (/)
+about/index.html        about (/about/)
+contact/index.html      contact (/contact/)
+404.html
 css/styles.css
 js/main.js
-assets/img/        web-optimised images and logo marks
-favicon.png  robots.txt  .nojekyll
+assets/img/             web-optimised images and logo marks
+favicon.ico  favicon.png  apple-touch-icon.png
+CNAME  robots.txt  .nojekyll
 ```
+
+Links point at folders (`about/`). When the files are opened straight from disk rather than through a server, `js/main.js` adds `index.html` to those links so navigation still works.
